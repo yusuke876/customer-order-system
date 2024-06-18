@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注文書</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>注文書</h1>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="sender">送り主 <span class="required">*</span></label>
+                <input type="text" id="sender" name="sender" required>
+                <div id="senderError" class="error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="senderPostal">送り主の郵便番号 <span class="required">*</span></label>
+                <input type="text" id="senderPostal" name="senderPostal" oninput="fetchAddress(this.value, 'senderAddress')" required>
+                <div id="senderPostalError" class="error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="senderAddress">送り主の住所 <span class="required">*</span></label>
+                <input type="text" id="senderAddress" name="senderAddress" required>
+                <div id="senderAddressError" class="error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="senderPhone">送り主の電話番号 <span class="required">*</span></label>
+                <input type="text" id="senderPhone" name="senderPhone" required>
+                <div id="senderPhoneError" class="error"></div>
+            </div>
+
+            <div id="recipients">
+                <div class="recipient-group">
+                    <div class="form-group">
+                        <label for="recipient">送り先 <span class="required">*</span></label>
+                        <input type="text" id="recipient" name="recipient" required>
+                        <div id="recipientError" class="error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipientPostal">送り先の郵便番号 <span class="required">*</span></label>
+                        <input type="text" id="recipientPostal" name="recipientPostal" oninput="fetchAddress(this.value, 'recipientAddress')" required>
+                        <div id="recipientPostalError" class="error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipientAddress">送り先の住所 <span class="required">*</span></label>
+                        <input type="text" id="recipientAddress" name="recipientAddress" required>
+                        <div id="recipientAddressError" class="error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="recipientPhone">送り先の電話番号 <span class="required">*</span></label>
+                        <input type="text" id="recipientPhone" name="recipientPhone" required>
+                        <div id="recipientPhoneError" class="error"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="button" onclick="addRecipient()">送り先を追加</button>
+            </div>
+
+            <div class="form-group">
+                <label for="email">メールアドレス <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+                <div id="emailError" class="error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="item">依頼品目 <span class="required">*</span></label>
+                <select id="item" name="item" required>
+                    <option value="">選択してください</option>
+                    <option value="特秀">特秀</option>
+                    <option value="秀（紅含む）">秀（紅含む）</option>
+                    <option value="家庭用">家庭用</option>
+                    <option value="20玉">20玉</option>
+                    <option value="20玉家庭用">20玉家庭用</option>
+                    <option value="20玉以下の玉">20玉以下の玉</option>
+                    <option value="大キズ">大キズ</option>
+                </select>
+                <div id="itemError" class="error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="weight">重量 <span class="required">*</span></label>
+                <select id="weight" name="weight" required>
+                    <option value="">選択してください</option>
+                    <option value="15">15kg</option>
+                    <option value="10">10kg</option>
+                    <option value="5">5kg</option>
+                    <option value="3">3kg</option>
+                </select>
+                <div id="weightError" class="error"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="notes">備考</label>
+                <textarea id="notes" name="notes"></textarea>
+            </div>
+            
+            <button type="button" onclick="submitOrder()">注文を送信</button>
+        </form>
+
+        <h2>注文リスト</h2>
+        <table id="orderTable">
+            <thead>
+                <tr>
+                    <th>送り主</th>
+                    <th>送り主の住所</th>
+                    <th>送り主の電話番号</th>
+                    <th>送り先</th>
+                    <th>送り先の住所</th>
+                    <th>送り先の電話番号</th>
+                    <th>依頼品目</th>
+                    <th>重量</th>
+                    <th>料金</th>
+                    <th>メールアドレス</th>
+                    <th>備考</th>
+                    <th>注文日</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
